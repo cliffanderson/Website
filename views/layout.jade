@@ -1,0 +1,17 @@
+doctype 
+html
+    head
+        title #{title} - Cliff Anderson
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        header
+            h1 Cliff Anderson
+        .menu
+            block menu
+        .container
+            .main-content
+                block content
+            .sidebar
+                block sidebar
+        footer
+            p Running on Node.js with Express, Jade and Stylus
