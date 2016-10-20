@@ -44,11 +44,38 @@ header
   width 500px
   margin 50px auto
   overflow hidden
-  
+
+.menu-background
+  background-color: #555
+
 .menu
-    text-align center
-    font-size 90px
-    color #f9f
+  div
+    display: table;
+    margin: 0 auto;
+
+  ul
+    list-style-type: none
+    margin: 0
+    padding: 0
+    overflow: hidden
+    text-align: center;
+    min-height: 30px
+
+  li
+    float: left;
+    display: block;
+    padding-top: 10px
+    padding-bottom: 10px
+
+    a
+      color: white
+      text-align: center
+      text-decoration: none
+      font-size: 150%
+      padding: 160px
+
+    a:hover
+      background-color: #222
 
 .main-content
   float left
@@ -86,6 +113,11 @@ header
       font-size 13px
       padding 0px 10px
       margin-bottom 10px
+    img
+      height: auto;
+      width: 170px
+      margin-left: 4px
+
 
 p
   line-height 1.8
