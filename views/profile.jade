@@ -1,0 +1,21 @@
+doctype
+html
+    head
+        title A workout tracker
+    body
+        p Welcome to your profile, #{username}!
+        
+        p #{message}
+        
+        form(name="workout", method="post", action="/profile")
+            div Exercise:
+            input(type="text", name="exercise")
+            div Sets:
+            input(type="number", name="sets", min="1", max="100")
+            div Reps per set:
+            input(type="number", name="reps", min="1", max="100")
+            div Weight:
+            input(type="number", name="weight", min="1", max="1500")
+            
+            input(type="submit", name="submit", value="Enter workout")
+               
