@@ -176,7 +176,16 @@ app.get('/drills', function(req, res) {
 });
 
 app.get('/profile', isLoggedIn, function(req, res) {
-    res.render('profile', { username: req.user.username });
+    var workoutHistoy = Workout.find({}, function(err, data) { 
+        if(!err) {
+            return res.render('profile', { username: req.user.username, workoutHistory: data});
+        } else {
+                res.render('profile', { username: req.user.username, workoutHistory: "You have no workouts logged"});
+        }
+    });
+    
+    
+    
 });
 
 app.post('/profile', isLoggedIn, function(req, res) {

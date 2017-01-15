@@ -19,3 +19,7 @@ html
             
             input(type="submit", name="submit", value="Enter workout")
                
+        p Your workout history:
+        
+        -for(var obj in workoutHistory)
+            p Name: #{workoutHistory[obj].name}   Sets: #{workoutHistory[obj].sets}   Reps: #{workoutHistory[obj].reps}   Weight: #{workoutHistory[obj].weight}
