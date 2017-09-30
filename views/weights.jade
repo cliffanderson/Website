@@ -1,0 +1,118 @@
+doctype
+html
+    head
+        title A workout tracker
+        script.
+          console.log('testing JS')
+          function calc() {
+
+            workingWeight = document.getElementsByName("working-weight")[0].value;
+
+            if(workingWeight == '') console.log('empty');
+            else {
+
+              document.getElementById('info').innerHTML = '';
+
+              write('');
+              write('Warm-up weights (number of plates are per side of bar):');
+              write('');
+
+              var weight50p = Math.ceil(niceWeight(Math.round(workingWeight * 0.50)));
+              var weight55p = Math.ceil(niceWeight(Math.round(workingWeight * 0.55)));
+              var weight70p = Math.ceil(niceWeight(Math.round(workingWeight * 0.70)));
+              var weight80p = Math.ceil(niceWeight(Math.round(workingWeight * 0.80)));
+              var weight90p = Math.ceil(niceWeight(Math.round(workingWeight * 0.90)));
+
+              write('Bar');
+              write('50%: ' + blue(weight50p) + '   ' + platesOnEachSide(weight50p));
+              //write('55%: ' + blue(weight55p) + '           ' + platesOnEachSide(weight55p));
+              write('70%: ' + blue(weight70p) + '   ' + platesOnEachSide(weight70p));
+              //write('80%: ' + blue(weight80p) + '   ' + platesOnEachSide(weight80p));
+              write('90%: ' + blue(weight90p) + '   ' + platesOnEachSide(weight90p));
+              write('');
+              write('Begin using working weight: ' + blue('(') + blue(niceWeight(workingWeight)) + blue(')') + platesOnEachSide(niceWeight(workingWeight)));
+            }
+          }
+
+          function blue(s) {
+            return ' <font color="blue">' + s + '</font>';
+          }
+
+          function red(s) {
+            return ' <font color="red">' + s + '</font>';
+          }
+
+          function platesOnEachSide(weight) {
+            weight = weight - 45; // remove bar
+            weight = weight / 2;
+
+            var count45 = 0;
+            var count35 = 0;
+            var count25 = 0;
+            var count10 = 0;
+            var count5 = 0;
+            var count2point5 = 0;
+
+            while(weight >= 45) {
+              count45++;
+              weight -= 45;
+            }
+
+            while(weight >= 35) {
+              count35++;
+              weight -= 35;
+            }
+
+            while(weight >= 25) {
+              count25++;
+              weight -= 25;
+            }
+
+            while(weight >= 10) {
+              count10++;
+              weight -= 10;
+            }
+
+            while(weight >= 5) {
+              count5++;
+              weight -= 5;
+            }
+
+            while(weight >= 2.5) {
+              count2point5++;
+              weight -= 2.5;
+            }
+
+            var returnString = '';
+
+            returnString += count45 > 0 ? red(count45 + "x45 ") : count45 + "x45 ";
+            returnString += count35 > 0 ? red(count35 + "x35 ") : count35 + "x35 ";
+            returnString += count25 > 0 ? red(count25 + "x25 ") : count25 + "x25 ";
+            returnString += count10 > 0 ? red(count10 + "x10 ") : count10 + "x10 ";
+            returnString += count5 > 0 ? red(count5 + "x5 ") : count5 + "x5 ";
+            returnString += count2point5 > 0 ? red(count2point5 + "x2.5") : count2point5 + "x2.5";
+
+            return returnString;
+          }
+
+          function niceWeight(weight) {
+            console.log('niceWeight()   weight: ' + weight);
+            if(weight % 5 == 0) return weight;
+
+            var difference = weight % 5;
+            weight = weight - difference;
+            weight += 5;
+
+            return weight;
+          }
+
+          function write(msg) {
+            document.getElementById('info').innerHTML += msg + '<br>';
+          }
+    body
+        form(name="login", method="post", action="javascript:calc()")
+            p Please enter your working weight:
+            input(type="number", name="working-weight")
+            input(type="submit", name="submit", value="Login")
+
+        div(id='info')
